@@ -54,6 +54,10 @@ function fh = isolate_axes(ah, vis)
     set(ah, 'Tag', 'ObjectToCopy');
     % Create a new figure exactly the same as the old one
     fh = copyfig(fh); %copyobj(fh, 0);
+    
+    allaxes = findall(fh, 'type', 'axes');
+    allaxes(1).Position = [0, 0, ah(1).Position(3), ah(1).Position(4)];
+    fh.Position = [0 0 ah(1).Position(3) ah(1).Position(4)];
     if nargin < 2 || ~vis
         set(fh, 'Visible', 'off');
     end
